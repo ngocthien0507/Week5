@@ -15,10 +15,10 @@ class FeedItem extends Component {
             publishedAt,
             content,
             source: {
-                name,
+            name,
             },
         },
-        onPressReadMore
+            onPressReadMore
         } = this.props;
         return (
             <View style={styles.FeedItem}>
@@ -26,9 +26,13 @@ class FeedItem extends Component {
                 <Image style={styles.Image} source={{ uri: urlToImage }} />
                 <Text style={styles.Source}> Source: <Text style={{ color: '#d3d3d3' }}> {name} </Text> </Text>
                 <Text style={styles.Content}> {content} </Text>
-                <Text style={styles.Source}> Published: <Text style={{ color: '#d3d3d3' }}> {moment(publishedAt).format('LLL')} </Text> </Text>
+                <Text style={styles.Source}> Published: {moment(publishedAt).startOf('hour').fromNow()}
+                    <Text style={{ color: '#d3d3d3',fontSize:13 }}>
+                        ({moment(publishedAt).format('LLL')})
+                    </Text>
+                </Text>
                 <TouchableOpacity style={styles.ReadMoreButton}
-                    onPress = {onPressReadMore}
+                    onPress={onPressReadMore}
                 >
                     <Text style={styles.buttonText}>
                         Read More
