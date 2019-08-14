@@ -36,7 +36,7 @@ class Flatlist extends Component {
     }
     // call API 
     CallAPI = async (page) => {
-        const { listArticles, totalResult, individualPublishersList } = this.state;
+        const { listArticles, totalResult } = this.state;
         let Respone = '';
         try {
             Respone = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=dea4cf70d9914db689de52a741d18bfc&page=${page}`);
@@ -99,7 +99,6 @@ class Flatlist extends Component {
         const { pageNumber, hasMore } = this.state;
         if (hasMore) {
             this.CallAPI(pageNumber);
-            console.log('getnews');
         }
         else {
             console.log('no more');
@@ -107,7 +106,6 @@ class Flatlist extends Component {
     }
     // scroll to top when press button "No more articles"
     onPressScrollToUp = () => {
-        console.log('Up Up Go to the top madafaka');
         this.flatListRef.scrollToIndex({ animated: true, index: 0 });
     }
 
@@ -115,12 +113,10 @@ class Flatlist extends Component {
     renderFooter = () => {
         const { isRefreshing, hasError, lastPageReached, isSearch } = this.state;
         if ((!isRefreshing || !hasError) && !isSearch) {
-            console.log('true:' + isSearch);
             return lastPageReached ? <EndArticles title='↑ No more Articles ↑' onPressButton={() => this.onPressScrollToUp()} /> : <ActivityIndicator size="large" color='black' animating={true} />
         }
 
         if (isSearch) {
-            console.log('false:' + isSearch);
             return <EndArticles title='Back' onPressButton={() => this.onRefresh()} />
         }
     }
@@ -139,6 +135,7 @@ class Flatlist extends Component {
             search: '',
             isSearch: false,
             individualPublishersList: [],
+            isPublishers: false,
         });
         setTimeout(() => {
             this.CallAPI(Page);

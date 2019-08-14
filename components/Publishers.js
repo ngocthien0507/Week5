@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PubItem from './PubItem';
 
-let array = [];
+
 
 class Publishers extends Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class Publishers extends Component {
         };
     }
     render() {
+        let array = [];
         const { ListPub, onPressButton } = this.props;
         console.log(ListPub)
         for (var propt in ListPub) {
@@ -43,6 +44,7 @@ class Publishers extends Component {
 }
 const styles = StyleSheet.create({
     container: {
+        flex:1,
         flexDirection: 'column',
         marginTop: 50,
         marginBottom: 20,
@@ -57,7 +59,6 @@ const styles = StyleSheet.create({
 
     },
     scrollView: {
-
         flexDirection: 'column',
         justifyContent: 'center',
         paddingVertical: 15,
